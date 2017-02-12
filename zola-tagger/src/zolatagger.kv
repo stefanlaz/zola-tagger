@@ -1,0 +1,48 @@
+#:kivy 1.0
+<HeaderLabel@Label>:
+	bold: True
+	size_hint_y: None
+	height: 40
+<ToolTipLabel@Label>:
+	open: False
+    size_hint: None, None
+    size: self.texture_size
+    canvas.before:
+        Color: 
+            rgb: 0.5, 0.5, 0.5                                                                                                            
+        Rectangle:
+            size: self.size
+            pos: self.pos
+<TagLabel@Label, SongListLabel@TagLabel>:
+	text_size: self.size
+	shorten: True
+	valign: 'center'
+	padding_x: 5
+	size_hint_y: None
+	height: 40
+	canvas.before:
+		Line:
+			rectangle: self.x, self.y, self.width, self.height
+<SongList, TagsGrid>:
+	cols: 1
+	size_hint: 0, 0
+	padding: 15
+	row_default_height: 40
+	row_force_default: True
+<MainWindow>:
+	Label:
+		id: start_label
+		text: 'Drag & drop a file or a folder here to see the magic'
+	Splitter:
+		id: split
+		strip_size: '2pt'
+		size_hint: 0, 0
+		min_size: 500
+		max_size: root.width - 500
+		sizable_from: 'right'
+		rescale_with_parent: True
+		keep_within_parent: True
+		SongList:
+			id: songs
+	TagsGrid:
+		id: tags
